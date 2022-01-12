@@ -51,14 +51,23 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = "wpserver"
   }
-}
 
-provisioner "remote-exec" {
+   connection {
+    type        = "ssh"
+    user        = "ubuntu"
+    private_key = "${file("~/.ssh/id_rsa")}"
+    host        = "${self.public_ip}"
+  }
+
+  provisioner "remote-exec" {
     inline = [
-      "sudo amazon-linux-extras install ansible2 -y",
-      "sudo yum install git -y",
-      "git clone git@github.com:xmegadezerx/wpserver2.git /tmp/wp",
-      "ansible-playbook /tmp/wp/wpserver2/ansible/wordpress/playbook.yaml"
+      "sudo apt-get update -y",
+      "sudo apt install software-properties-common -y",
+      "sudo apt-add-repository ppa:ansible/ansible -y",
+      "sudo apt update -y",
+      "sudo apt install git -y",
+      "git clone https://github.com/xmegadezerx/wpserver2.git /tmp/wp",
+      "ansible-playbook /tmp/wp/ansible/wordpress/playbook.yml"
     ]
   }
 }
