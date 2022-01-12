@@ -37,8 +37,8 @@ resource "aws_security_group" "mainsecgroup" {
 
 #creating key-pair for logging into EC2 in us-east-1
 resource "aws_key_pair" "worker-key" {
-  key_name   = "id_rsa"
-  public_key = file("~/.ssh/id_rsa.pub")
+  key_name   = "wpserver"
+  public_key = file("~/.ssh/wpserver.pub")
 
 }
 
@@ -47,7 +47,7 @@ resource "aws_instance" "app_server" {
   ami           = "ami-0e472ba40eb589f49"
   instance_type = "t2.micro"
   security_groups = ["${aws_security_group.mainsecgroup.name}"]
-  key_name = "id_rsa"
+  key_name = "wpserver"
   tags = {
     Name = "wpserver"
   }
@@ -55,7 +55,7 @@ resource "aws_instance" "app_server" {
    connection {
     type        = "ssh"
     user        = "ubuntu"
-    private_key = "${file("~/.ssh/id_rsa")}"
+    private_key = "${file("~/.ssh/wpserver")}"
     host        = "${self.public_ip}"
   }
 
