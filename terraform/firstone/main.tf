@@ -1,14 +1,8 @@
 terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 3.7"
-    }
-  }
+  required_version = ">=1.0"
 }
 
 provider "aws" {
-  profile = "default"
   region  = "us-east-1"
 }
 
@@ -41,13 +35,14 @@ resource "aws_security_group" "mainsecgroup" {
 
 }
 
-#Create key-pair for logging into EC2 in us-east-1
+#creating key-pair for logging into EC2 in us-east-1
 resource "aws_key_pair" "worker-key" {
   key_name   = "wpserver"
   public_key = file("~/.ssh/wpserver.pub")
 
 }
 
+#creating aws_instance
 resource "aws_instance" "app_server" {
   ami           = "ami-0e472ba40eb589f49"
   instance_type = "t2.micro"
@@ -56,6 +51,4 @@ resource "aws_instance" "app_server" {
   tags = {
     Name = "wpserver"
   }
-} 
-
-1
+}
