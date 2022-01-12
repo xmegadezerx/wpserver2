@@ -1,0 +1,14 @@
+---
+#System Settings
+php_modules: [ 'php-curl', 'php-gd', 'php-mbstring', 'php-xml', 'php-xmlrpc', 'php-soap', 'php-intl', 'php-zip' ]
+
+#MySQL Settings
+mysql_root_password: "wth2021"
+mysql_db: "wpdb"
+mysql_user: "yehor"
+mysql_password: "wht4ever"
+
+#HTTP Settings
+http_conf: "wpsite.conf"
+http_host: "52.0.18.184"
+http_port: "80"
