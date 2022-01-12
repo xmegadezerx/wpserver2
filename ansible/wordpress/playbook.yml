@@ -1,6 +1,7 @@
 #installampwp
 ---
-- hosts: all
+- hosts: localhost
+  connection: local
   become: true
   vars_files:
     - vars/default.yml

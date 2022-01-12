@@ -10,5 +10,4 @@ mysql_password: "wht4ever"
 
 #HTTP Settings
 http_conf: "wpsite.conf"
-http_host: "52.0.18.184"
 http_port: "80"
