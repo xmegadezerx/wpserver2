@@ -68,7 +68,6 @@ resource "aws_instance" "app_server" {
       "sudo apt install git -y",
       "git clone https://github.com/xmegadezerx/wpserver2.git /tmp/wp",
       "sudo apt install ansible -y",
-      "sudo apt install python3.10.1 -y",
       "ansible-playbook /tmp/wp/ansible/wordpress/playbook.yml"
     ]
   }
