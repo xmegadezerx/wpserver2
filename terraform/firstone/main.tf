@@ -44,7 +44,7 @@ resource "aws_key_pair" "worker-key" {
 
 #creating aws_instance
 resource "aws_instance" "app_server" {
-  ami           = "ami-0e472ba40eb589f49"
+  ami           = "ami-04505e74c0741db8d"
   instance_type = "t2.micro"
   security_groups = ["${aws_security_group.mainsecgroup.name}"]
   key_name = "wpserver"
