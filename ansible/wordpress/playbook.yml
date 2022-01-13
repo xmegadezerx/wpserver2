@@ -96,6 +96,15 @@
         login_password: "{{ mysql_root_password }}"
       tags: [ mysql ]
 
+  # UFW Configuration
+    - name: "UFW - Allow HTTP on port {{ http_port }}"
+      ufw:
+        rule: allow
+        port: "{{ http_port }}"
+        proto: tcp
+      tags: [ system ]
+
+
   # WordPress Configuration
     - name: Download and unpack latest WordPress
       unarchive:
